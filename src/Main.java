@@ -1,16 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Person firstAvatar = new PersonBuilder()
-                .setFirstName("Gabriel")
-                .setSecondName("Dello Iacovo")
-                .build();
-        System.out.println(firstAvatar);
-        Person secondAvatar = new PersonBuilder()
-                .setFirstName("Linda")
-                .setSecondName("Trenta")
-                .setAge(28)
-                .setAddress("Somewhere over the rainbow")
-                .build();
-        System.out.println(secondAvatar);
+        Person user1 = Person.builder("Gabriel", "Dello Iacovo").build();
+        Person user2 = Person.builder("Linda", "Trenta").withAge(29).build();
+        System.out.println("\n" + user1 + "\n" + user2);
+
     }
 }

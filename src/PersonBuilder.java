@@ -4,46 +4,42 @@ import java.util.Optional;
 
 public class PersonBuilder {
 
-    private Optional<String> firstName;
+    protected String firstName;
 
-    private Optional<String> secondName;
+    protected String secondName;
 
-    private Optional<Integer> age;
+    protected Integer age;
 
-    private Optional<String> address;
+    protected String address;
 
-    public PersonBuilder() {
-        this.firstName = Optional.empty();
-        this.secondName = Optional.empty();
-        this.age = Optional.empty();
-        this.address = Optional.empty();
+    public PersonBuilder(String firstName, String secondName) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.age = null;
+        this.address = "Undefined";
     }
 
-    public PersonBuilder setFirstName(String firstName) {
-        this.firstName = Optional.of(firstName);
+    public PersonBuilder withFirstName(String firstName) {
+        this.firstName = firstName;
         return this;
     }
 
-    public PersonBuilder setSecondName(String secondName) {
-        this.secondName = Optional.of(secondName);
+    public PersonBuilder withSecondName(String secondName) {
+        this.secondName = secondName;
         return this;
     }
 
-    public PersonBuilder setAge(Integer age) {
-        this.age = Optional.of(age);
+    public PersonBuilder withAge(Integer age) {
+        this.age = age;
         return this;
     }
 
-    public PersonBuilder setAddress(String address) {
-        this.address = Optional.of(address);
+    public PersonBuilder withAddress(String address) {
+        this.address = address;
         return this;
     }
 
     public Person build() {
-        return new Person(
-                firstName.orElseThrow(() -> new InvalidRequestStateException("Required parameter first name")),
-                secondName.orElseThrow(() -> new InvalidRequestStateException("Required parameter second name")),
-                age.orElse(0),
-                address.orElse("Not specified"));
+        return new Person(this);
     }
 }

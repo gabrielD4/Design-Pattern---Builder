@@ -2,51 +2,39 @@ import java.util.Optional;
 
 public class Person {
 
-    private String firstName;
+    private final String firstName;
 
-    private String secondName;
+    private final String secondName;
 
-    private int age;
+    private final Integer age;
 
-    private String address;
+    private final String address;
 
-    Person(String firstName, String secondName, int age, String address) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.age = age;
-        this.address = address;
+    Person(PersonBuilder builder) {
+        this.firstName = builder.firstName;
+        this.secondName = builder.secondName;
+        this.age = builder.age;
+        this.address = builder.address;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getSecondName() {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public int getAge() {
+    public Integer getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public static PersonBuilder builder(String firstName, String secondName) {
+        return new PersonBuilder(firstName, secondName);
     }
 
     @Override
